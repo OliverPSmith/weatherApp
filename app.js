@@ -26,10 +26,16 @@ async function fetchAPI(search) {
 function displayResults(data) {
     const html = `  
                         <div class="main-info">
-                            <h2 id="name">${data.location.name}</h2>
+                            <img src="${data.current.weather_icons.map(item => item)}">
+                            <div id="name-time">
+                                <h2 id="name">${data.location.name}</h2>
+                                <h5>${data.location.localtime}</h5>
+                            </div>
+                            
                             <h2 id="temp">${data.current.temperature} °c</h2>
                             <h2 id="status">${data.current.weather_descriptions.map(item => item).join(' ')}</h2>
                         </div>
+                        
                         <div class="more-info">
                             <p>Feels Like ${data.current.feelslike}°c</p>
                             <p>Cloud Cover: ${data.current.cloudcover}</p>
@@ -40,4 +46,4 @@ function displayResults(data) {
                     `
     details.innerHTML = html;
     console.log((data.current.temperature * 9/5) +32);
-}
+};
